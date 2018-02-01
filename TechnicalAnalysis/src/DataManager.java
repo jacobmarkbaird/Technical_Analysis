@@ -1,10 +1,8 @@
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DataManager {
@@ -36,14 +34,14 @@ public class DataManager {
 			return null;
 		}
 	}
-	public static String[][] jtsa(JSONObject obj, String name, String[] times, String[] values) {
-		String[][] results = new String[times.length][values.length];
+	public static double[][] jtsa(JSONObject obj, String name, String[] times, String[] values) {
+		double[][] results = new double[times.length][values.length];
 		try {
 			JSONObject j2 = obj.getJSONObject(name);
 			for(int i = 0; i < times.length; i++) {
 				JSONObject j3 = j2.getJSONObject(times[i]);
 				for(int j = 0; j < values.length; j++) {
-					results[i][j] = j3.getString(values[j]);
+					results[i][j] = Double.parseDouble(j3.getString(values[j]));
 				}
 			}
 			return results;
