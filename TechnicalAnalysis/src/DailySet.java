@@ -3,17 +3,19 @@ public class DailySet {
 	private String[] fields = {
 			"SMA_C", "SMA_O", "SMA_H", "SMA_L",
 			"EMA_C", "EMA_O", "EMA_H", "EMA_L",
-			"WMA_C", "WMA_O", "WMA_H", "WMA_L",
-			"DEMA_C", "DEMA_O", "DEMA_H", "DEMA_L",
-			"TEMA_C", "TEMA_O", "TEMA_H", "TEMA_L",
-			"TRIMA_C", "TRIMA_O", "TRIMA_H", "TRIMA_L",
-			"KAMA_C", "KAMA_O", "KAMA_H", "KAMA_L",
-			"MAMA_C", "MAMA_O", "MAMA_H", "MAMA_L",
-			"FAMA_C", "FAMA_O", "FAMA_H", "FAMA_L",
-			"T3_C", "T3_O", "T3_H", "T3_L",
 			"MACD_Signal_C","MACD_Signal_O","MACD_Signal_H","MACD_Signal_L",
 			"MACD_C","MACD_O","MACD_H","MACD_L",
-			"MACD_Hist_C","MACD_Hist_O","MACD_Hist_H","MACD_Hist_L"};
+			"MACD_Hist_C","MACD_Hist_O","MACD_Hist_H","MACD_Hist_L",
+			"STOCH_SlowK","STOCK_SlowD",
+			"RSI_C", "RSI_O", "RSI_H", "RSI_L",
+			"ADX_C", "ADX_O", "ADX_H", "ADX_L",
+			"CCI_C", "CCI_O", "CCI_H", "CCI_L",
+			"AROON_DOWN","AROON_UP",
+			"RMB_C","RMB_O","RMB_H","RMB_L",
+			"RUB_C","RUB_O","RUB_H","RUB_L",
+			"RLB_C","RLB_O","RLB_H","RLB_L",
+			"AD","OBV",
+			"open","high","low","close","volume"};
 	private double[][] values;
 	public DailySet(String ticker, String day) {
 		String startTime = day + " 09:30";
@@ -56,160 +58,152 @@ public class DailySet {
 				new String[]{"EMA",ticker,"1min","60","low"})), "Technical Analysis: EMA",
 				times, new String[]{"EMA"})[0];
 		
-		values[8] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"WMA",ticker,"1min","60","close"})), "Technical Analysis: WMA",
-				times, new String[]{"WMA"})[0];
-		values[9] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"WMA",ticker,"1min","60","open"})), "Technical Analysis: WMA",
-				times, new String[]{"WMA"})[0];
-		values[10] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"WMA",ticker,"1min","60","high"})), "Technical Analysis: WMA",
-				times, new String[]{"WMA"})[0];
-		values[11] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"WMA",ticker,"1min","60","low"})), "Technical Analysis: WMA",
-				times, new String[]{"WMA"})[0];
-		
-		values[12] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"DEMA",ticker,"1min","60","close"})), "Technical Analysis: DEMA",
-				times, new String[]{"DEMA"})[0];
-		values[13] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"DEMA",ticker,"1min","60","open"})), "Technical Analysis: DEMA",
-				times, new String[]{"DEMA"})[0];
-		values[14] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"DEMA",ticker,"1min","60","high"})), "Technical Analysis: DEMA",
-				times, new String[]{"DEMA"})[0];
-		values[15] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"DEMA",ticker,"1min","60","low"})), "Technical Analysis: DEMA",
-				times, new String[]{"DEMA"})[0];
-		
-		values[16] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TEMA",ticker,"1min","60","close"})), "Technical Analysis: TEMA",
-				times, new String[]{"TEMA"})[0];
-		values[17] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TEMA",ticker,"1min","60","open"})), "Technical Analysis: TEMA",
-				times, new String[]{"TEMA"})[0];
-		values[18] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TEMA",ticker,"1min","60","high"})), "Technical Analysis: TEMA",
-				times, new String[]{"TEMA"})[0];
-		values[19] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TEMA",ticker,"1min","60","low"})), "Technical Analysis: TEMA",
-				times, new String[]{"TEMA"})[0];
-		
-		values[16] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TRIMA",ticker,"1min","60","close"})), "Technical Analysis: TRIMA",
-				times, new String[]{"TRIMA"})[0];
-		values[17] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TRIMA",ticker,"1min","60","open"})), "Technical Analysis: TRIMA",
-				times, new String[]{"TRIMA"})[0];
-		values[18] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TRIMA",ticker,"1min","60","high"})), "Technical Analysis: TRIMA",
-				times, new String[]{"TRIMA"})[0];
-		values[19] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"TRIMA",ticker,"1min","60","low"})), "Technical Analysis: TRIMA",
-				times, new String[]{"TRIMA"})[0];
-		
-		values[20] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"KAMA",ticker,"1min","60","close"})), "Technical Analysis: KAMA",
-				times, new String[]{"KAMA"})[0];
-		values[21] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"KAMA",ticker,"1min","60","open"})), "Technical Analysis: KAMA",
-				times, new String[]{"KAMA"})[0];
-		values[22] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"KAMA",ticker,"1min","60","high"})), "Technical Analysis: KAMA",
-				times, new String[]{"KAMA"})[0];
-		values[23] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"KAMA",ticker,"1min","60","low"})), "Technical Analysis: KAMA",
-				times, new String[]{"KAMA"})[0];
-		
-		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","series_type"},
-				new String[]{"MAMA",ticker,"1min","close"})), "Technical Analysis: MAMA",
-				times, new String[]{"MAMA","FAMA"});
-		values[24] = temp[0];
-		values[28] = temp[1];
-		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","series_type"},
-				new String[]{"MAMA",ticker,"1min","open"})), "Technical Analysis: MAMA",
-				times, new String[]{"MAMA","FAMA"});
-		values[25] = temp[0];
-		values[29] = temp[1];
-		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","series_type"},
-				new String[]{"MAMA",ticker,"1min","high"})), "Technical Analysis: MAMA",
-				times, new String[]{"MAMA","FAMA"});
-		values[26] = temp[0];
-		values[30] = temp[1];
-		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","series_type"},
-				new String[]{"MAMA",ticker,"1min","low"})), "Technical Analysis: MAMA",
-				times, new String[]{"MAMA","FAMA"});
-		values[27] = temp[0];
-		values[31] = temp[1];
-		
-		values[32] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"T3",ticker,"1min","60","close"})), "Technical Analysis: T3",
-				times, new String[]{"T3"})[0];
-		values[33] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"T3",ticker,"1min","60","open"})), "Technical Analysis: T3",
-				times, new String[]{"T3"})[0];
-		values[34] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"T3",ticker,"1min","60","high"})), "Technical Analysis: T3",
-				times, new String[]{"T3"})[0];
-		values[35] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
-				new String[]{"function","symbol","interval","time_period","series_type"},
-				new String[]{"T3",ticker,"1min","60","low"})), "Technical Analysis: T3",
-				times, new String[]{"T3"})[0];
-		
 		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
 				new String[]{"function","symbol","interval","series_type"},
 				new String[]{"MACD",ticker,"1min","close"})), "Technical Analysis: MACD",
 				times, new String[]{"MACD_Signal","MACD","MACD_Hist"});
-		values[36] = temp[0];
-		values[40] = temp[1];
-		values[44] = temp[2];
+		values[8] = temp[0];
+		values[12] = temp[1];
+		values[16] = temp[2];
 		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
 				new String[]{"function","symbol","interval","series_type"},
 				new String[]{"MACD",ticker,"1min","open"})), "Technical Analysis: MACD",
 				times, new String[]{"MACD_Signal","MACD","MACD_Hist"});
-		values[37] = temp[0];
-		values[41] = temp[1];
-		values[45] = temp[2];
+		values[9] = temp[0];
+		values[13] = temp[1];
+		values[17] = temp[2];
 		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
 				new String[]{"function","symbol","interval","series_type"},
 				new String[]{"MACD",ticker,"1min","high"})), "Technical Analysis: MACD",
 				times, new String[]{"MACD_Signal","MACD","MACD_Hist"});
-		values[38] = temp[0];
-		values[42] = temp[1];
-		values[46] = temp[2];
+		values[10] = temp[0];
+		values[14] = temp[1];
+		values[18] = temp[2];
 		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
 				new String[]{"function","symbol","interval","series_type"},
 				new String[]{"MACD",ticker,"1min","low"})), "Technical Analysis: MACD",
 				times, new String[]{"MACD_Signal","MACD","MACD_Hist"});
+		values[11] = temp[0];
+		values[15] = temp[1];
+		values[19] = temp[2];
+		
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval"},
+				new String[]{"STOCH",ticker,"1min"})), "Technical Analysis: STOCH",
+				times, new String[]{"SlowK","SlowD"});
+		values[20] = temp[0];
+		values[21] = temp[1];
+		
+		values[22] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"RSI",ticker,"1min","60","close"})), "Technical Analysis: RSI",
+				times, new String[]{"RSI"})[0];
+		values[23] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"RSI",ticker,"1min","60","open"})), "Technical Analysis: RSI",
+				times, new String[]{"RSI"})[0];
+		values[24] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"RSI",ticker,"1min","60","high"})), "Technical Analysis: RSI",
+				times, new String[]{"RSI"})[0];
+		values[25] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"RSI",ticker,"1min","60","low"})), "Technical Analysis: RSI",
+				times, new String[]{"RSI"})[0];
+		
+		values[26] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"ADX",ticker,"1min","60","close"})), "Technical Analysis: ADX",
+				times, new String[]{"ADX"})[0];
+		values[27] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"ADX",ticker,"1min","60","open"})), "Technical Analysis: ADX",
+				times, new String[]{"ADX"})[0];
+		values[28] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"ADX",ticker,"1min","60","high"})), "Technical Analysis: ADX",
+				times, new String[]{"ADX"})[0];
+		values[29] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"ADX",ticker,"1min","60","low"})), "Technical Analysis: ADX",
+				times, new String[]{"ADX"})[0];
+		
+		values[30] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"CCI",ticker,"1min","60","close"})), "Technical Analysis: CCI",
+				times, new String[]{"CCI"})[0];
+		values[31] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"CCI",ticker,"1min","60","open"})), "Technical Analysis: CCI",
+				times, new String[]{"CCI"})[0];
+		values[32] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"CCI",ticker,"1min","60","high"})), "Technical Analysis: CCI",
+				times, new String[]{"CCI"})[0];
+		values[33] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"CCI",ticker,"1min","60","low"})), "Technical Analysis: CCI",
+				times, new String[]{"CCI"})[0];
+		
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period"},
+				new String[]{"AROON",ticker,"1min","60"})), "Technical Analysis: AROON",
+				times, new String[]{"Aroon Down", "Aroon Up"});
+		values[34] = temp[0];
+		values[35] = temp[1];
+		
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"BBANDS",ticker,"1min","60","close"})), "Technical Analysis: BBANDS",
+				times, new String[]{"Real Middle Band","Real Upper Band","Real Lower Band"});
+		values[36] = temp[0];
+		values[40] = temp[1];
+		values[44] = temp[2];
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"BBANDS",ticker,"1min","60","open"})), "Technical Analysis: BBANDS",
+				times, new String[]{"Real Middle Band","Real Upper Band","Real Lower Band"});
+		values[37] = temp[0];
+		values[41] = temp[1];
+		values[45] = temp[2];
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"BBANDS",ticker,"1min","60","high"})), "Technical Analysis: BBANDS",
+				times, new String[]{"Real Middle Band","Real Upper Band","Real Lower Band"});
+		values[38] = temp[0];
+		values[42] = temp[1];
+		values[46] = temp[2];
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","time_period","series_type"},
+				new String[]{"BBANDS",ticker,"1min","60","low"})), "Technical Analysis: BBANDS",
+				times, new String[]{"Real Middle Band","Real Upper Band","Real Lower Band"});
 		values[39] = temp[0];
 		values[43] = temp[1];
 		values[47] = temp[2];
-	}
+		
+		values[48] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval"},
+				new String[]{"AD",ticker,"1min"})), "Technical Analysis: Chaikin A/D",
+				times, new String[]{"Chaikin A/D"})[0];
+		
+		values[49] = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval"},
+				new String[]{"OBV",ticker,"1min"})), "Technical Analysis: OBV",
+				times, new String[]{"OBV"})[0];
+		
+		String[] times2 = new String[times.length];
+		for(int i = 0; i < times.length; i++) {
+			times2[i] = times[i] + ":00";
+		}
+		temp = DataManager.jtsa(DataManager.toJSONObject(DataManager.queryBuilder(
+				new String[]{"function","symbol","interval","outputsize"},
+				new String[]{"TIME_SERIES_INTRADAY",ticker,"1min","full"})), "Time Series (1min)",
+				times2, new String[]{"1. open","2. high","3. low","4. close","5. volume"});
+		values[50] = temp[0];
+		values[51] = temp[1];
+		values[52] = temp[2];
+		values[53] = temp[3];
+		values[54] = temp[4];
+		
+		}
 }
