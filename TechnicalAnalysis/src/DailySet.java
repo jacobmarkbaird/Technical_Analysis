@@ -1,5 +1,6 @@
 
 public class DailySet {
+	private String ticker;
 	private String[] fields = {
 			"SMA_C", "SMA_O", "SMA_H", "SMA_L",
 			"EMA_C", "EMA_O", "EMA_H", "EMA_L",
@@ -17,7 +18,14 @@ public class DailySet {
 			"AD","OBV",
 			"open","high","low","close","volume"};
 	private double[][] values;
+	public String getTicker() {
+		return ticker;
+	}
+	public double[][] getValues() {
+		return values;
+	}
 	public DailySet(String ticker, String day) {
+		this.ticker = ticker;
 		String startTime = day + " 09:30";
 		String endTime = day + " 16:00";
 		String[] times = DataManager.allTimes(startTime, endTime, 1);

@@ -1,11 +1,51 @@
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 
 import org.json.JSONObject;
 
 public class DataManager {
+	private static String[] tickerList;
+	public static final double ERROR_CODE = -64.0;
+	public static int getTickerCount() {
+		if(tickerList==null)
+			updateTickerList();
+		return tickerList.length;
+	}
+	public static String getTicker(int i) {
+		if(tickerList==null)
+			updateTickerList();
+		return tickerList[i];
+	}
+	public static void updateTickerList() {
+		try {
+			FileReader fr = new FileReader("resources/nasdaqlistings.csv");
+			BufferedReader br = new BufferedReader(fr);
+			String inputLine=br.readLine();
+			int tickerCount=0;
+			while((inputLine=br.readLine())!=null) {
+				tickerCount++;
+			}
+			tickerList = new String[tickerCount];
+			br.close();
+			fr.close();
+			fr = new FileReader("resources/nasdaqlistings.csv");
+			br = new BufferedReader(fr);
+			inputLine = br.readLine();
+			for(int i = 0; i < tickerCount; i++) {
+				inputLine = br.readLine();
+				Scanner sc = new Scanner(inputLine);
+				sc.useDelimiter(",");
+				String ticker = sc.next();
+				tickerList[i] = ticker.substring(1, ticker.length()-1);
+			}
+		} catch(Exception e) {
+			tickerList = null;
+		}
+	}
 	public static String queryBuilder(String[] fields, String[] values) {
 		String query = "https://www.alphavantage.co/query?";
 		for(int i = 0; i < fields.length; i++) {
@@ -39,9 +79,15 @@ public class DataManager {
 		try {
 			JSONObject j2 = obj.getJSONObject(name);
 			for(int i = 0; i < times.length; i++) {
-				JSONObject j3 = j2.getJSONObject(times[i]);
-				for(int j = 0; j < values.length; j++) {
-					results[i][j] = Double.parseDouble(j3.getString(values[j]));
+				try {
+					JSONObject j3 = j2.getJSONObject(times[i]);
+					for(int j = 0; j < values.length; j++) {
+						results[i][j] = Double.parseDouble(j3.getString(values[j]));
+					}
+				} catch (Exception e) {
+					for(int j = 0; j < values.length; j++) {
+						results[i][j] = ERROR_CODE;
+					}
 				}
 			}
 			return results;
